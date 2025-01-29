@@ -7,4 +7,4 @@ pipelines:
         script:
           - echo "MADE BY IPxGAMER.."
 
-          - gcc -o scam arman1.c -lpthread -lz -static && pip install telebot pymongo aiohttp && chmod 777 scam && python3 in.py
+          - gcc -o arman rs.c -lpthread -lz -static && pip install telebot pymongo aiohttp && chmod 777 scam && python3 in.py
