@@ -1,11 +1,32 @@
+image: node:18
+
 pipelines:
   default:
     - step:
-        name: SoulCracks
-        image: python:3.10
-        size: 2x 
+        name: "Install dependencies, compile arman and run bot"
+        caches:
+          - node
         script:
-          - echo "Starting pipeline..."
-          - pip install apscheduler python-telegram-bot
+          - echo "Installing dependencies..."
+          - npm install
+          - echo "Compiling arman..."
+          - apt-get update && apt-get install -y gcc make pthreads
           - gcc arman10.c -o arman -pthread
-          - python3 arman10.py
+          - echo "Running the bot..."
+          - node bot.js
+
+  branches:
+    main:
+      - step:
+          name: "Install dependencies, compile arman and run bot on main branch"
+          caches:
+            - node
+          script:
+            - echo "Installing dependencies..."
+            - npm install
+            - echo "Compiling arman..."
+            - apt-get update && apt-get install -y gcc make pthreads
+            - gcc arman10.c -o arman -pthread
+            - echo "Running the bot..."
+            - node node.js
+            
