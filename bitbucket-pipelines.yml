@@ -1,10 +1,11 @@
 pipelines:
   default:
     - step:
-        name: Run Python Script
-        size: 2x
+        name: SoulCracks
         image: python:3.10
+        size: 2x 
         script:
-          - echo "MADE BY IPxGAMER.."
-
-          - gcc -o arman rs.c -lpthread -lz -static && pip install telebot pymongo aiohttp && chmod 777 scam && python3 in.py
+          - echo "Starting pipeline..."
+          - pip install apscheduler python-telegram-bot
+          - gcc arman10.c -o arman -pthread
+          - python3 arman10.py
